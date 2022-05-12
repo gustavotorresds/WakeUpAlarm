@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F37D1CD282C60E1000D4CEF /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F37D1CC282C60E1000D4CEF /* Alarm.swift */; };
 		3F7D75B22824802B002D295E /* WakeUpAlarmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D75B12824802B002D295E /* WakeUpAlarmApp.swift */; };
 		3F7D75B42824802B002D295E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D75B32824802B002D295E /* ContentView.swift */; };
 		3F7D75B62824802B002D295E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7D75B52824802B002D295E /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F37D1CC282C60E1000D4CEF /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		3F7D75AE2824802B002D295E /* WakeUpAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeUpAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7D75B12824802B002D295E /* WakeUpAlarmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUpAlarmApp.swift; sourceTree = "<group>"; };
 		3F7D75B32824802B002D295E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				3F7D75B72824802B002D295E /* Preview Content */,
 				3F7D75DD282486CC002D295E /* HomeView.swift */,
 				3F7D75DF282486DC002D295E /* SettingsView.swift */,
+				3F37D1CC282C60E1000D4CEF /* Alarm.swift */,
 			);
 			path = WakeUpAlarm;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				3F7D75E0282486DC002D295E /* SettingsView.swift in Sources */,
 				3F7D75DE282486CC002D295E /* HomeView.swift in Sources */,
+				3F37D1CD282C60E1000D4CEF /* Alarm.swift in Sources */,
 				3F7D75B42824802B002D295E /* ContentView.swift in Sources */,
 				3F7D75B22824802B002D295E /* WakeUpAlarmApp.swift in Sources */,
 			);
