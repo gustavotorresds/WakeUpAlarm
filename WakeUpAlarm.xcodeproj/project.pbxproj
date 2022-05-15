@@ -17,6 +17,8 @@
 		3F7D75DE282486CC002D295E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D75DD282486CC002D295E /* HomeView.swift */; };
 		3F7D75E0282486DC002D295E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D75DF282486DC002D295E /* SettingsView.swift */; };
 		CBF895DE28318C410075F289 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF895DD28318C410075F289 /* Alarm.swift */; };
+		CBF895E12831900A0075F289 /* AlarmProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF895E02831900A0075F289 /* AlarmProps.swift */; };
+		CBF895E3283196120075F289 /* HomeViewWakeUpTimeEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF895E2283196120075F289 /* HomeViewWakeUpTimeEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		3F7D75DD282486CC002D295E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3F7D75DF282486DC002D295E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CBF895DD28318C410075F289 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		CBF895E02831900A0075F289 /* AlarmProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmProps.swift; sourceTree = "<group>"; };
+		CBF895E2283196120075F289 /* HomeViewWakeUpTimeEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewWakeUpTimeEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +105,12 @@
 			isa = PBXGroup;
 			children = (
 				3F7D75B12824802B002D295E /* WakeUpAlarmApp.swift */,
+				CBF895DF28318FDC0075F289 /* Models */,
 				3F7D75B32824802B002D295E /* ContentView.swift */,
 				3F7D75B52824802B002D295E /* Assets.xcassets */,
 				3F7D75B72824802B002D295E /* Preview Content */,
 				3F7D75DD282486CC002D295E /* HomeView.swift */,
+				CBF895E2283196120075F289 /* HomeViewWakeUpTimeEditView.swift */,
 				CBF895DD28318C410075F289 /* Alarm.swift */,
 				3F7D75DF282486DC002D295E /* SettingsView.swift */,
 			);
@@ -134,6 +140,14 @@
 				3F7D75CE2824802B002D295E /* WakeUpAlarmUITestsLaunchTests.swift */,
 			);
 			path = WakeUpAlarmUITests;
+			sourceTree = "<group>";
+		};
+		CBF895DF28318FDC0075F289 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CBF895E02831900A0075F289 /* AlarmProps.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBF895E3283196120075F289 /* HomeViewWakeUpTimeEditView.swift in Sources */,
+				CBF895E12831900A0075F289 /* AlarmProps.swift in Sources */,
 				3F7D75E0282486DC002D295E /* SettingsView.swift in Sources */,
 				3F7D75DE282486CC002D295E /* HomeView.swift in Sources */,
 				CBF895DE28318C410075F289 /* Alarm.swift in Sources */,

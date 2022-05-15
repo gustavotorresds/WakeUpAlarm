@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var data: AlarmProps.AlarmPropsData
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(data: $data)
                 .tabItem() {
                     Image(systemName: "house.fill")
                     Text("Home")
@@ -26,6 +27,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(data: .constant(AlarmProps.AlarmPropsData()))
     }
 }
