@@ -14,11 +14,30 @@ import Foundation
 
 class Alarm: ObservableObject {
     // Helper structs
-    struct AlarmSettings {
-        // - Wake-up time (i.e., by when the user must be up)
-        // - Number of times the alarm should ring (constant for now)
-        // - Interval of time between alarms (constant for now)
+    struct Data {
+        var finalWakeUpTime: Date
+        var timeIntervalLength: Double // in # of mins
+        var alarmFrequency: Int // number of times the alarm should ring
+        
+        init() {
+            self.finalWakeUpTime = Date()
+            self.timeIntervalLength = 5
+            self.alarmFrequency = 6
+        }
+        
+        init(finalWakeUpTimeString: String, timeIntervalLength: Double, alarmFrequency: Int) {
+            let dateFormatForDate = DateFormatter()
+            dateFormatForDate.timeZone = TimeZone(abbreviation: "PST")
+            dateFormatForDate.dateFormat = "dd-MM-yyyy HH:mm:ss"
+            self.finalWakeUpTime = dateFormatForDate.date(from: finalWakeUpTimeString)!
+            
+            self.timeIntervalLength = timeIntervalLength
+            self.alarmFrequency = alarmFrequency
+        }
     }
+    
+    @Published var data: Data = Data()
+
     
     // Variables -- we should make sure the variable names are super clear
     
@@ -26,6 +45,10 @@ class Alarm: ObservableObject {
     // - upcomingAlarmSettings
     // - alarmIsOn
     // - alarmShouldRing
+    
+    init() {
+        
+    }
     
     // Functions
     
@@ -70,3 +93,8 @@ class Alarm: ObservableObject {
         
     }
 }
+
+extension Alarm {
+    static let sampleAlarm: Alarm = Alarm()
+}
+
