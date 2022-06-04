@@ -28,7 +28,7 @@ struct HomeView: View {
                 Text("wake up at")
                     .font(.system(size: 32))
                 Button(action: {isPresentingWakeUpTimeEditView = true}) {
-                    Text(dateToString(date: alarm.data.finalWakeUpTime))
+                    Text(dateToString(date: alarm.getUpcomingDateTime()))
                         .foregroundColor(.black)
                         .font(.system(size: 32).bold())
                         .underline()

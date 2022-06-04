@@ -36,18 +36,17 @@ class Alarm: ObservableObject {
         }
     }
     
-    @Published var data: Data = Data()
-
-    
     // Variables -- we should make sure the variable names are super clear
     
     // - globalAlarmSettings
+    @Published var data: Data
+    
     // - upcomingAlarmSettings
     // - alarmIsOn
     // - alarmShouldRing
     
     init() {
-        
+        data = Data()
     }
     
     // Functions
@@ -58,8 +57,8 @@ class Alarm: ObservableObject {
     // - If the general settings are for 7a, the upcoming alarm was edited to 8a and it's currently past 7a of  May 11, the function will return May 12 8:00
     // - If the general settings are for 7a, the upcoming alarm was edited to 8a and it's currently 5a of May 11, the function will return May 11 8:00
     // - If the alarm is off, the function will return null
-    func getUpcomingDateTime() {
-
+    func getUpcomingDateTime() -> Date {
+        return data.finalWakeUpTime
     }
     
     // Takes in a time and updates the global AlarmSettings.
@@ -68,8 +67,8 @@ class Alarm: ObservableObject {
     }
     
     // Takes in a time and updates the upcoming AlarmSettings.
-    func updateUpcomingTime() {
-        
+    func updateUpcomingTime(newDateTime: Date) {
+        data.finalWakeUpTime = newDateTime
     }
     
     // Returns whether the alarm
@@ -92,9 +91,7 @@ class Alarm: ObservableObject {
     func shutRinging() {
         
     }
-}
-
-extension Alarm {
+    
     static let sampleAlarm: Alarm = Alarm()
 }
 
