@@ -36,10 +36,7 @@ struct HomeView: View {
             }
             
             //Small font message for start and interval
-            let totalAlarmDuration = Double(alarm.data.timeIntervalLength)*Double(alarm.data.alarmFrequency)
-            let alarmStartTime = Calendar.current.date(byAdding: .minute, value: -Int(totalAlarmDuration), to: alarm.data.finalWakeUpTime)!
-            let alarmStartTimeString = dateToString(date: alarmStartTime)
-            Text("Alarms will ring every \(Int(alarm.data.timeIntervalLength)) min starting at \(alarmStartTimeString)")
+            Text("Alarms will ring every \(Int(alarm.getTimeIntervalLength())) min starting at \(dateToString(date: alarm.getStartDateTime()))")
             
             // empty button for switching off alarms
             Button(action: {}) {
@@ -56,7 +53,7 @@ struct HomeView: View {
         //functionality for bringing up wake up time edit view
         .sheet(isPresented: $isPresentingWakeUpTimeEditView) {
             NavigationView {
-                HomeViewWakeUpTimeEditView(wakeUpTime: $alarm.data.finalWakeUpTime)
+                HomeViewWakeUpTimeEditView(alarm: alarm)
                     .navigationTitle("Edit Wake Up Time")
                     .toolbar {
                                 ToolbarItem(placement: .cancellationAction) {

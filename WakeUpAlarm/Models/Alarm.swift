@@ -71,6 +71,16 @@ class Alarm: ObservableObject {
         data.finalWakeUpTime = newDateTime
     }
     
+    func getStartDateTime() -> Date {
+        let totalAlarmDuration = Double(data.timeIntervalLength) * Double(data.alarmFrequency)
+        let alarmStartTime = Calendar.current.date(byAdding: .minute, value: -Int(totalAlarmDuration), to: data.finalWakeUpTime)!
+        return alarmStartTime
+    }
+    
+    func getTimeIntervalLength() -> Double {
+        return data.timeIntervalLength
+    }
+    
     // Returns whether the alarm
     func isOn() {
         
