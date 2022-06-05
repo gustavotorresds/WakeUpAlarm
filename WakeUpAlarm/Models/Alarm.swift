@@ -39,7 +39,7 @@ class Alarm: ObservableObject {
     // Variables -- we should make sure the variable names are super clear
     
     // - globalAlarmSettings
-    @Published var data: Data
+    @Published private var data: Data
     
     // - upcomingAlarmSettings
     // - alarmIsOn

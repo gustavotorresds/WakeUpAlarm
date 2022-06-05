@@ -10,8 +10,15 @@ import SwiftUI
 
 struct HomeViewWakeUpTimeEditView: View {
     @ObservedObject var alarm: Alarm
+    
+    private var dateProxy: Binding<Date> {
+        Binding<Date>(get: {alarm.getUpcomingDateTime()}, set: {
+            alarm.updateUpcomingTime(newDateTime: $0)
+        })
+    }
+    
     var body: some View {
-        DatePicker("Wake Up Time", selection: $alarm.data.finalWakeUpTime, displayedComponents: .hourAndMinute)
+        DatePicker("Wake Up Time", selection: dateProxy, displayedComponents: .hourAndMinute)
                     .datePickerStyle(WheelDatePickerStyle())
     }
 }
