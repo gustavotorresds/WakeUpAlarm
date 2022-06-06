@@ -14,13 +14,13 @@ import Foundation
 
 class Alarm: ObservableObject {
     // Helper structs
-    struct Data {
-        var finalWakeUpTime: Date
+    struct Settings {
+        var wakeUpTime: Date
         var timeIntervalLength: Double // in # of mins
         var alarmFrequency: Int // number of times the alarm should ring
         
         init() {
-            self.finalWakeUpTime = Date()
+            self.wakeUpTime = Date()
             self.timeIntervalLength = 5
             self.alarmFrequency = 6
         }
@@ -29,7 +29,7 @@ class Alarm: ObservableObject {
             let dateFormatForDate = DateFormatter()
             dateFormatForDate.timeZone = TimeZone(abbreviation: "PST")
             dateFormatForDate.dateFormat = "dd-MM-yyyy HH:mm:ss"
-            self.finalWakeUpTime = dateFormatForDate.date(from: finalWakeUpTimeString)!
+            self.wakeUpTime = dateFormatForDate.date(from: finalWakeUpTimeString)!
             
             self.timeIntervalLength = timeIntervalLength
             self.alarmFrequency = alarmFrequency
@@ -37,19 +37,58 @@ class Alarm: ObservableObject {
     }
     
     // Variables -- we should make sure the variable names are super clear
+    @Published private var globalSettings: Settings
     
-    // - globalAlarmSettings
-    @Published private var data: Data
-    
+    // TODO:
     // - upcomingAlarmSettings
     // - alarmIsOn
     // - alarmShouldRing
     
     init() {
-        data = Data()
+        globalSettings = Settings()
     }
     
     // Functions
+    
+    func getGlobalWakeUpTime() -> Date {
+        return globalSettings.wakeUpTime
+    }
+    
+    // Takes in a time and updates the global AlarmSettings.
+    func setGlobalWakeUpTime(newWakeUpTime: Date) {
+        globalSettings.wakeUpTime = newWakeUpTime
+    }
+    
+    func getGlobalInitialWakeUpTime() -> Date {
+        let totalAlarmDuration = Double(globalSettings.timeIntervalLength) * Double(globalSettings.alarmFrequency)
+        let initialWakeUpTime = Calendar.current.date(byAdding: .minute, value: -Int(totalAlarmDuration), to: globalSettings.wakeUpTime)!
+        return initialWakeUpTime
+    }
+    
+    func getGlobalTimeIntervalLength() -> Double {
+        return globalSettings.timeIntervalLength
+    }
+    
+    // Returns whether the alarm
+//    func isOn() {
+//
+//    }
+    
+    // Deactivates the global alarm.
+//    func switchOff() {
+//
+//    }
+    
+    // Plays the alarm sound.
+    // Takes as an argument a function that executes when the alarm rings (useful for situations when we want a view to display or some other behavior to be triggered along with the alarm sound.
+//    func ring() {
+//
+//    }
+    
+    // Stops the ringing of the current alarm.
+//    func shutRinging() {
+//
+//    }
     
     // Returns the upcoming wake-up datetime.
     // Example functionality:
@@ -57,50 +96,7 @@ class Alarm: ObservableObject {
     // - If the general settings are for 7a, the upcoming alarm was edited to 8a and it's currently past 7a of  May 11, the function will return May 12 8:00
     // - If the general settings are for 7a, the upcoming alarm was edited to 8a and it's currently 5a of May 11, the function will return May 11 8:00
     // - If the alarm is off, the function will return null
-    func getUpcomingDateTime() -> Date {
-        return data.finalWakeUpTime
-    }
-    
-    // Takes in a time and updates the global AlarmSettings.
-    func updateGeneralTime() {
-        
-    }
-    
-    // Takes in a time and updates the upcoming AlarmSettings.
-    func updateUpcomingTime(newDateTime: Date) {
-        data.finalWakeUpTime = newDateTime
-    }
-    
-    func getStartDateTime() -> Date {
-        let totalAlarmDuration = Double(data.timeIntervalLength) * Double(data.alarmFrequency)
-        let alarmStartTime = Calendar.current.date(byAdding: .minute, value: -Int(totalAlarmDuration), to: data.finalWakeUpTime)!
-        return alarmStartTime
-    }
-    
-    func getTimeIntervalLength() -> Double {
-        return data.timeIntervalLength
-    }
-    
-    // Returns whether the alarm
-    func isOn() {
-        
-    }
-    
-    // Deactivates the global alarm.
-    func switchOff() {
-        
-    }
-    
-    // Plays the alarm sound.
-    // Takes as an argument a function that executes when the alarm rings (useful for situations when we want a view to display or some other behavior to be triggered along with the alarm sound.
-    func ring() {
-        
-    }
-    
-    // Stops the ringing of the current alarm.
-    func shutRinging() {
-        
-    }
+    // getUpcomingDateTime()
     
     static let sampleAlarm: Alarm = Alarm()
 }

@@ -28,7 +28,7 @@ struct HomeView: View {
                 Text("wake up at")
                     .font(.system(size: 32))
                 Button(action: {isPresentingWakeUpTimeEditView = true}) {
-                    Text(dateToString(date: alarm.getUpcomingDateTime()))
+                    Text(dateToString(date: alarm.getGlobalWakeUpTime()))
                         .foregroundColor(.black)
                         .font(.system(size: 32).bold())
                         .underline()
@@ -36,7 +36,7 @@ struct HomeView: View {
             }
             
             //Small font message for start and interval
-            Text("Alarms will ring every \(Int(alarm.getTimeIntervalLength())) min starting at \(dateToString(date: alarm.getStartDateTime()))")
+            Text("Alarms will ring every \(Int(alarm.getGlobalTimeIntervalLength())) min starting at \(dateToString(date: alarm.getGlobalInitialWakeUpTime()))")
             
             // empty button for switching off alarms
             Button(action: {}) {

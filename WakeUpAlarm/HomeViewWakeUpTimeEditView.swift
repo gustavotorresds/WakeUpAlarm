@@ -12,8 +12,8 @@ struct HomeViewWakeUpTimeEditView: View {
     @ObservedObject var alarm: Alarm
     
     private var dateProxy: Binding<Date> {
-        Binding<Date>(get: {alarm.getUpcomingDateTime()}, set: {
-            alarm.updateUpcomingTime(newDateTime: $0)
+        Binding<Date>(get: {alarm.getGlobalWakeUpTime()}, set: {
+            alarm.setGlobalWakeUpTime(newWakeUpTime: $0)
         })
     }
     
