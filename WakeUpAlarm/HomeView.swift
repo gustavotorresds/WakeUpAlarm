@@ -10,7 +10,9 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var isPresentingWakeUpTimeEditView = false
-    @Binding var data: AlarmProps.AlarmPropsData
+
+    @ObservedObject var alarm: Alarm
+    
     var body: some View {
         
         VStack(spacing: 20) {
@@ -26,7 +28,7 @@ struct HomeView: View {
                 Text("wake up at")
                     .font(.system(size: 32))
                 Button(action: {isPresentingWakeUpTimeEditView = true}) {
-                    Text(dateToString(date: data.finalWakeUpTime))
+                    Text(dateToString(date: alarm.getGlobalWakeUpTime()))
                         .foregroundColor(.black)
                         .font(.system(size: 32).bold())
                         .underline()
@@ -34,10 +36,7 @@ struct HomeView: View {
             }
             
             //Small font message for start and interval
-            let totalAlarmDuration = Double(data.timeIntervalLength)*Double(data.alarmFrequency)
-            let alarmStartTime = Calendar.current.date(byAdding: .minute, value: -Int(totalAlarmDuration), to: data.finalWakeUpTime)!
-            let alarmStartTimeString = dateToString(date: alarmStartTime)
-            Text("Alarms will ring every \(Int(data.timeIntervalLength)) min starting at \(alarmStartTimeString)")
+            Text("Alarms will ring every \(Int(alarm.getGlobalTimeIntervalLength())) min starting at \(dateToString(date: alarm.getGlobalInitialWakeUpTime()))")
             
             // empty button for switching off alarms
             Button(action: {}) {
@@ -54,7 +53,7 @@ struct HomeView: View {
         //functionality for bringing up wake up time edit view
         .sheet(isPresented: $isPresentingWakeUpTimeEditView) {
             NavigationView {
-                HomeViewWakeUpTimeEditView(wakeUpTime: $data.finalWakeUpTime)
+                HomeViewWakeUpTimeEditView(alarm: alarm)
                     .navigationTitle("Edit Wake Up Time")
                     .toolbar {
                                 ToolbarItem(placement: .cancellationAction) {
@@ -85,6 +84,6 @@ extension HomeView {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(data: .constant(AlarmProps.AlarmPropsData()))
+        HomeView(alarm: Alarm.sampleAlarm)
     }
 }
