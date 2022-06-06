@@ -9,15 +9,22 @@ import Foundation
 import SwiftUI
 
 struct HomeViewWakeUpTimeEditView: View {
-    @Binding var wakeUpTime: Date
+    @ObservedObject var alarm: Alarm
+    
+    private var dateProxy: Binding<Date> {
+        Binding<Date>(get: {alarm.getUpcomingDateTime()}, set: {
+            alarm.updateUpcomingTime(newDateTime: $0)
+        })
+    }
+    
     var body: some View {
-        DatePicker("Wake Up Time", selection: $wakeUpTime, displayedComponents: .hourAndMinute)
+        DatePicker("Wake Up Time", selection: dateProxy, displayedComponents: .hourAndMinute)
                     .datePickerStyle(WheelDatePickerStyle())
     }
 }
 
 struct HomeViewWakeUpTimeEditView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewWakeUpTimeEditView(wakeUpTime: .constant(Date()))
+        HomeViewWakeUpTimeEditView(alarm: Alarm.sampleAlarm)
     }
 }

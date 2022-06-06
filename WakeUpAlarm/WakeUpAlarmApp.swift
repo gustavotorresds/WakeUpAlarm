@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct WakeUpAlarmApp: App {
-    @State private var data = AlarmProps.AlarmPropsData()
+    @StateObject private var alarm = Alarm()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(data: $data)
+            ContentView(alarm: alarm)
         }
     }
 }
+
