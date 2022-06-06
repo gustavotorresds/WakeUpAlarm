@@ -1,5 +1,3 @@
-// from ray wenderlich
-
 import Foundation
 import UserNotifications
 import CoreLocation
