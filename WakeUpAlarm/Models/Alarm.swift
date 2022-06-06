@@ -14,14 +14,16 @@ import Foundation
 
 class Alarm: ObservableObject {
     // Helper structs
-    struct Data {
+    struct Data: Identifiable {
+        // adding an id here for hygiene purposes - not super useful right now since only 1 alarm object throughout but could be helpful in the future
+        var id = UUID().uuidString
         var finalWakeUpTime: Date
         var timeIntervalLength: Double // in # of mins
         var alarmFrequency: Int // number of times the alarm should ring
         
         init() {
             self.finalWakeUpTime = Date()
-            self.timeIntervalLength = 5
+            self.timeIntervalLength = 1 // changed to 1 for testing
             self.alarmFrequency = 6
         }
         
@@ -69,6 +71,8 @@ class Alarm: ObservableObject {
     // Takes in a time and updates the upcoming AlarmSettings.
     func updateUpcomingTime(newDateTime: Date) {
         data.finalWakeUpTime = newDateTime
+//        NotificationManager.shared.scheduleNotificationAt(ringTime: newDateTime, alarmIDString: self.data.id)
+        NotificationManager.shared.scheduleNotificationSeries(alarm: self)
     }
     
     func getStartDateTime() -> Date {
@@ -79,6 +83,14 @@ class Alarm: ObservableObject {
     
     func getTimeIntervalLength() -> Double {
         return data.timeIntervalLength
+    }
+
+    func getAlarmFrequency() -> Int {
+        return data.alarmFrequency
+    }
+    
+    func getId() -> String {
+        return data.id
     }
     
     // Returns whether the alarm

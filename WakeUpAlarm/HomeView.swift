@@ -16,6 +16,22 @@ struct HomeView: View {
     var body: some View {
         
         VStack(spacing: 20) {
+            // Getting user auth for throwing notifications
+            HStack(alignment: .top) {
+                VStack(alignment: .center) {
+                    Button(
+                      action: {
+                          NotificationManager.shared.requestAuthorization { granted in
+                          }
+                      },
+                      label: {
+                        Image(systemName: "bell")
+                          .font(.title)
+                          .accentColor(.black)
+                      })
+                      .padding(.trailing)
+                }
+            }
             Text("Wake-up Alarm")
                 .font(.system(size: 48).bold())
                 .padding(.bottom)
